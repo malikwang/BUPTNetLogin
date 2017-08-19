@@ -54,8 +54,9 @@
 
 
 //更新主菜单栏，主要更新账户、登录、是否登录。
-- (void)refreshMenu:(NSMenu *)mainMenu{
+- (BOOL)refreshStatusBarAndMenu:(NSMenu *)mainMenu{
     //先刷新账户一栏
+    __block BOOL flag = true;
     [self refreshAccountMenu:mainMenu];
     [loginManager refresh:^(NSDictionary *data){
         NSString *responseCode = [data valueForKey:@"responseCode"];
@@ -64,16 +65,24 @@
             [mainMenu itemAtIndex:2].title = @"已登录";
             //登录设置为不可点
             [mainMenu itemAtIndex:3].enabled = NO;
+            flowUsage = [NSString stringWithFormat:@"%@MB",[data valueForKey:@"flowUsage"]];
+            feeRemain = [NSString stringWithFormat:@"%@元",[data valueForKey:@"feeRemain"]];
+            [self refreshStatusBarWithFlow:flowUsage andFee:feeRemain];
         } else if ([responseCode isEqualToString:@"1"]){
             [mainMenu itemAtIndex:2].title = @"请检查您的网络连接";
             //登录设置为不可点
             [mainMenu itemAtIndex:3].enabled = YES;
+            [self refreshStatusBarWithFlow:@"null" andFee:@"null"];
+            flag = false;
         } else if ([responseCode isEqualToString:@"2"]){
             [mainMenu itemAtIndex:2].title = @"未登录";
             //登录设置为可点
             [mainMenu itemAtIndex:3].enabled = YES;
+            [self refreshStatusBarWithFlow:@"null" andFee:@"null"];
+            flag = false;
         }
     }];
+    return flag;
 }
 
 - (void)refreshAccountMenu:(NSMenu *)mainMenu{
@@ -144,7 +153,7 @@
 - (void)mouseDown:(NSEvent *)event{
     NSMenu *menu = [super menu];
     [item popUpStatusItemMenu:menu];
-    [self refreshMenu:menu];
+    [self refreshStatusBarAndMenu:menu];
     [self setNeedsDisplay:YES];
 }
 

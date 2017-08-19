@@ -24,5 +24,5 @@
 @property (nonatomic, strong) LoginManager *loginManager;
 - (id)initWithStatusItem:(NSStatusItem *)statusItem;
 - (void)refreshStatusBarWithFlow:(NSString *)flow andFee:(NSString *)fee;
-- (void)refreshMenu:(NSMenu *)mainMenu;
+- (BOOL)refreshStatusBarAndMenu:(NSMenu *)mainMenu;
 @end

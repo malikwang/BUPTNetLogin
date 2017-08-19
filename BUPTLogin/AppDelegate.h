@@ -23,6 +23,5 @@
 @property (strong, nonatomic) StatusItemView *statusItemView;
 @property (strong, nonatomic) LoginManager *loginManager;
 @property (assign) NSTimer* timer;
-- (void)refresh:(void (^)(BOOL))completionBlock;
 @end
 
