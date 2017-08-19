@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>id</key>
+		<string>2017140088</string>
+		<key>pwd</key>
+		<string>woai1874</string>
+		<key>selectState</key>
+		<string>1</string>
+	</dict>
+	<dict>
+		<key>id</key>
+		<string>9715200524</string>
+		<key>pwd</key>
+		<string>123456123</string>
+		<key>selectState</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>id</key>
+		<string>2017140045</string>
+		<key>pwd</key>
+		<string>woai1874</string>
+		<key>selectState</key>
+		<string>0</string>
+	</dict>
+</array>
+</plist>

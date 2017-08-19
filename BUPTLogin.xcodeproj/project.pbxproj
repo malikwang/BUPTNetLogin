@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FAF37C5859DB5DB69A26ADEB /* libPods-BUPTLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC77AF18EFF826AC21F227F3 /* libPods-BUPTLogin.a */; };
 		FCA864471F45247800B21B66 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA864461F45247800B21B66 /* AppDelegate.m */; };
 		FCA8644A1F45247800B21B66 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA864491F45247800B21B66 /* main.m */; };
 		FCA8644D1F45247800B21B66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA8644C1F45247800B21B66 /* ViewController.m */; };
-		FCA8644F1F45247800B21B66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA8644E1F45247800B21B66 /* Assets.xcassets */; };
-		FCA864521F45247800B21B66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCA864501F45247800B21B66 /* Main.storyboard */; };
 		FCA8645D1F45247800B21B66 /* BUPTLoginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA8645C1F45247800B21B66 /* BUPTLoginTests.m */; };
 		FCA864681F45247800B21B66 /* BUPTLoginUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA864671F45247800B21B66 /* BUPTLoginUITests.m */; };
+		FCA864761F45248B00B21B66 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCA864751F45248B00B21B66 /* MainMenu.xib */; };
+		FCA864791F4529FB00B21B66 /* StatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA864781F4529FB00B21B66 /* StatusItemView.m */; };
+		FCA8647B1F452E9500B21B66 /* Account.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCA8647A1F452E9500B21B66 /* Account.plist */; };
+		FCA864881F458BEC00B21B66 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA864861F458BEC00B21B66 /* AccountManager.m */; };
+		FCA864891F458BEC00B21B66 /* AccountManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCA864871F458BEC00B21B66 /* AccountManager.xib */; };
+		FCA864E71F45F19E00B21B66 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA864E61F45F19E00B21B66 /* LoginManager.m */; };
+		FCA864EE1F471EE900B21B66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA864ED1F471EE900B21B66 /* Assets.xcassets */; };
+		FCA864F41F47473C00B21B66 /* AFSessionSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA864F31F47473C00B21B66 /* AFSessionSingleton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,14 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CCCB676FC2681F0459AE3CD4 /* Pods-BUPTLogin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BUPTLogin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BUPTLogin/Pods-BUPTLogin.debug.xcconfig"; sourceTree = "<group>"; };
+		E3220BEE5A78226524831DD6 /* Pods-BUPTLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BUPTLogin.release.xcconfig"; path = "Pods/Target Support Files/Pods-BUPTLogin/Pods-BUPTLogin.release.xcconfig"; sourceTree = "<group>"; };
+		FC77AF18EFF826AC21F227F3 /* libPods-BUPTLogin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BUPTLogin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA864421F45247800B21B66 /* BUPTLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BUPTLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA864451F45247800B21B66 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FCA864461F45247800B21B66 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FCA864491F45247800B21B66 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FCA8644B1F45247800B21B66 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FCA8644C1F45247800B21B66 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		FCA8644E1F45247800B21B66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FCA864511F45247800B21B66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FCA864531F45247800B21B66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCA864581F45247800B21B66 /* BUPTLoginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BUPTLoginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA8645C1F45247800B21B66 /* BUPTLoginTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUPTLoginTests.m; sourceTree = "<group>"; };
@@ -49,6 +57,18 @@
 		FCA864631F45247800B21B66 /* BUPTLoginUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BUPTLoginUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA864671F45247800B21B66 /* BUPTLoginUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUPTLoginUITests.m; sourceTree = "<group>"; };
 		FCA864691F45247800B21B66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCA864751F45248B00B21B66 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ../MainMenu.xib; sourceTree = "<group>"; };
+		FCA864771F4529FB00B21B66 /* StatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItemView.h; sourceTree = "<group>"; };
+		FCA864781F4529FB00B21B66 /* StatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItemView.m; sourceTree = "<group>"; };
+		FCA8647A1F452E9500B21B66 /* Account.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Account.plist; sourceTree = "<group>"; };
+		FCA864851F458BEC00B21B66 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
+		FCA864861F458BEC00B21B66 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
+		FCA864871F458BEC00B21B66 /* AccountManager.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountManager.xib; sourceTree = "<group>"; };
+		FCA864E51F45F19E00B21B66 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		FCA864E61F45F19E00B21B66 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		FCA864ED1F471EE900B21B66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FCA864F21F47473C00B21B66 /* AFSessionSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSessionSingleton.h; sourceTree = "<group>"; };
+		FCA864F31F47473C00B21B66 /* AFSessionSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSessionSingleton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF37C5859DB5DB69A26ADEB /* libPods-BUPTLogin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +97,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49DD1BB1A1B9157720A41020 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC77AF18EFF826AC21F227F3 /* libPods-BUPTLogin.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6BC0849A10092328E71190C1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CCCB676FC2681F0459AE3CD4 /* Pods-BUPTLogin.debug.xcconfig */,
+				E3220BEE5A78226524831DD6 /* Pods-BUPTLogin.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FCA864391F45247800B21B66 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +121,8 @@
 				FCA8645B1F45247800B21B66 /* BUPTLoginTests */,
 				FCA864661F45247800B21B66 /* BUPTLoginUITests */,
 				FCA864431F45247800B21B66 /* Products */,
+				6BC0849A10092328E71190C1 /* Pods */,
+				49DD1BB1A1B9157720A41020 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +139,23 @@
 		FCA864441F45247800B21B66 /* BUPTLogin */ = {
 			isa = PBXGroup;
 			children = (
+				FCA864F21F47473C00B21B66 /* AFSessionSingleton.h */,
+				FCA864F31F47473C00B21B66 /* AFSessionSingleton.m */,
 				FCA864451F45247800B21B66 /* AppDelegate.h */,
 				FCA864461F45247800B21B66 /* AppDelegate.m */,
+				FCA864851F458BEC00B21B66 /* AccountManager.h */,
+				FCA864861F458BEC00B21B66 /* AccountManager.m */,
+				FCA864E51F45F19E00B21B66 /* LoginManager.h */,
+				FCA864E61F45F19E00B21B66 /* LoginManager.m */,
 				FCA8644B1F45247800B21B66 /* ViewController.h */,
 				FCA8644C1F45247800B21B66 /* ViewController.m */,
-				FCA8644E1F45247800B21B66 /* Assets.xcassets */,
-				FCA864501F45247800B21B66 /* Main.storyboard */,
+				FCA864771F4529FB00B21B66 /* StatusItemView.h */,
+				FCA864781F4529FB00B21B66 /* StatusItemView.m */,
+				FCA864751F45248B00B21B66 /* MainMenu.xib */,
+				FCA864871F458BEC00B21B66 /* AccountManager.xib */,
 				FCA864531F45247800B21B66 /* Info.plist */,
+				FCA8647A1F452E9500B21B66 /* Account.plist */,
+				FCA864ED1F471EE900B21B66 /* Assets.xcassets */,
 				FCA864481F45247800B21B66 /* Supporting Files */,
 			);
 			path = BUPTLogin;
@@ -144,9 +194,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCA8646C1F45247800B21B66 /* Build configuration list for PBXNativeTarget "BUPTLogin" */;
 			buildPhases = (
+				137F28ABE8D1C7752E36116A /* [CP] Check Pods Manifest.lock */,
 				FCA8643E1F45247800B21B66 /* Sources */,
 				FCA8643F1F45247800B21B66 /* Frameworks */,
 				FCA864401F45247800B21B66 /* Resources */,
+				A2D2DBE3C9D4167005CBC766 /* [CP] Embed Pods Frameworks */,
+				C8F8B3A214FCB2F1E2992776 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,8 +299,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCA8644F1F45247800B21B66 /* Assets.xcassets in Resources */,
-				FCA864521F45247800B21B66 /* Main.storyboard in Resources */,
+				FCA864761F45248B00B21B66 /* MainMenu.xib in Resources */,
+				FCA8647B1F452E9500B21B66 /* Account.plist in Resources */,
+				FCA864EE1F471EE900B21B66 /* Assets.xcassets in Resources */,
+				FCA864891F458BEC00B21B66 /* AccountManager.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,12 +322,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		137F28ABE8D1C7752E36116A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A2D2DBE3C9D4167005CBC766 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BUPTLogin/Pods-BUPTLogin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8F8B3A214FCB2F1E2992776 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BUPTLogin/Pods-BUPTLogin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FCA8643E1F45247800B21B66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FCA8644D1F45247800B21B66 /* ViewController.m in Sources */,
+				FCA864881F458BEC00B21B66 /* AccountManager.m in Sources */,
+				FCA864791F4529FB00B21B66 /* StatusItemView.m in Sources */,
+				FCA864F41F47473C00B21B66 /* AFSessionSingleton.m in Sources */,
+				FCA864E71F45F19E00B21B66 /* LoginManager.m in Sources */,
 				FCA8644A1F45247800B21B66 /* main.m in Sources */,
 				FCA864471F45247800B21B66 /* AppDelegate.m in Sources */,
 			);
@@ -308,17 +415,6 @@
 			targetProxy = FCA864641F45247800B21B66 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		FCA864501F45247800B21B66 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FCA864511F45247800B21B66 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FCA8646A1F45247800B21B66 /* Debug */ = {
@@ -412,6 +508,7 @@
 		};
 		FCA8646D1F45247800B21B66 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCCB676FC2681F0459AE3CD4 /* Pods-BUPTLogin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -425,6 +522,7 @@
 		};
 		FCA8646E1F45247800B21B66 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3220BEE5A78226524831DD6 /* Pods-BUPTLogin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -509,6 +607,7 @@
 				FCA8646E1F45247800B21B66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FCA8646F1F45247800B21B66 /* Build configuration list for PBXNativeTarget "BUPTLoginTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +616,7 @@
 				FCA864711F45247800B21B66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FCA864721F45247800B21B66 /* Build configuration list for PBXNativeTarget "BUPTLoginUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +625,7 @@
 				FCA864741F45247800B21B66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

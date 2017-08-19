@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="xzx-Hq-C5Y" id="JNw-EU-QGy"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="xzx-Hq-C5Y" customClass="AppDelegate">
+            <connections>
+                <outlet property="accountMenu" destination="VH0-Mj-gVp" id="0fY-ei-j7L"/>
+                <outlet property="autoRefreshItem" destination="3R5-k0-hDk" id="WfH-Ro-TPv"/>
+                <outlet property="mainMenu" destination="NJd-89-AYa" id="mCr-dA-oKD"/>
+            </connections>
+        </customObject>
+        <menu autoenablesItems="NO" id="NJd-89-AYa">
+            <items>
+                <menuItem title="账户" id="VH0-Mj-gVp">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="FSF-AM-vr6"/>
+                <menuItem title="当前未登录" enabled="NO" id="zyf-1u-IRS">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="登录" keyEquivalent="l" id="QvG-yt-oLG">
+                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                    <connections>
+                        <action selector="login:" target="xzx-Hq-C5Y" id="Tnz-fa-BHa"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="K2L-bL-XIp"/>
+                <menuItem title="自动刷新" id="3R5-k0-hDk">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="autoRefreshAccount:" target="xzx-Hq-C5Y" id="CfM-Ix-WnA"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="刷新" keyEquivalent="r" id="goh-LR-Drm">
+                    <connections>
+                        <action selector="refreshAccount:" target="xzx-Hq-C5Y" id="XCY-in-D9k"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="glg-PT-cbd"/>
+                <menuItem title="退出" keyEquivalent="q" id="tv6-hW-rRK">
+                    <connections>
+                        <action selector="quit:" target="xzx-Hq-C5Y" id="AsL-bG-M8X"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="98.5" y="159.5"/>
+        </menu>
+    </objects>
+</document>
