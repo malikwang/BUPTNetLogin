@@ -53,11 +53,13 @@
 
 
 
-//更新主菜单栏，主要更新账户、登录、是否登录。
-- (BOOL)refreshStatusBarAndMenu:(NSMenu *)mainMenu{
+//更新主菜单栏，同时选择是否刷新菜单
+- (void)refreshMenu:(NSMenu *)mainMenu whetherRefreshStatusBar:(BOOL)refreshFlag andCompletionBlock:(void (^)(BOOL))completionBlock{
     //先刷新账户一栏
-    __block BOOL flag = true;
+    __block BOOL flag = false;
     [self refreshAccountMenu:mainMenu];
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
     [loginManager refresh:^(NSDictionary *data){
         NSString *responseCode = [data valueForKey:@"responseCode"];
         //说明已登录
@@ -67,22 +69,30 @@
             [mainMenu itemAtIndex:3].enabled = NO;
             flowUsage = [NSString stringWithFormat:@"%@MB",[data valueForKey:@"flowUsage"]];
             feeRemain = [NSString stringWithFormat:@"%@元",[data valueForKey:@"feeRemain"]];
-            [self refreshStatusBarWithFlow:flowUsage andFee:feeRemain];
+            if (refreshFlag) {
+                [self refreshStatusBarWithFlow:flowUsage andFee:feeRemain];
+            }
+            flag = true;
+            dispatch_group_leave(group);
         } else if ([responseCode isEqualToString:@"1"]){
             [mainMenu itemAtIndex:2].title = @"请检查您的网络连接";
             //登录设置为不可点
             [mainMenu itemAtIndex:3].enabled = YES;
             [self refreshStatusBarWithFlow:@"null" andFee:@"null"];
             flag = false;
+            dispatch_group_leave(group);
         } else if ([responseCode isEqualToString:@"2"]){
             [mainMenu itemAtIndex:2].title = @"未登录";
             //登录设置为可点
             [mainMenu itemAtIndex:3].enabled = YES;
             [self refreshStatusBarWithFlow:@"null" andFee:@"null"];
             flag = false;
+            dispatch_group_leave(group);
         }
     }];
-    return flag;
+    dispatch_group_notify(group,dispatch_get_main_queue(),^{
+        completionBlock(flag);
+    });
 }
 
 - (void)refreshAccountMenu:(NSMenu *)mainMenu{
@@ -123,6 +133,7 @@
     [[mainMenu itemAtIndex:0] setSubmenu:subMenu];
 }
 
+
 - (void)itemSelected:(NSMenuItem *)accountItem{
     [self updateSelectInPlist:accountItem.title];
 }
@@ -153,7 +164,10 @@
 - (void)mouseDown:(NSEvent *)event{
     NSMenu *menu = [super menu];
     [item popUpStatusItemMenu:menu];
-    [self refreshStatusBarAndMenu:menu];
+    //这里不刷新Bar，因为菜单里有刷新功能
+    [self refreshMenu:menu whetherRefreshStatusBar:NO andCompletionBlock:^(BOOL flag){
+        
+    }];
     [self setNeedsDisplay:YES];
 }
 

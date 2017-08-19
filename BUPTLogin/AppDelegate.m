@@ -47,11 +47,13 @@
 }
 
 - (void)refresh{
-    BOOL flag = [statusItemView refreshStatusBarAndMenu:mainMenu];
-    if (!flag) {
-        [timer invalidate];
-        timer = nil;
-    }
+    [statusItemView refreshMenu:mainMenu whetherRefreshStatusBar:YES andCompletionBlock:^(BOOL flag){
+        if (!flag) {
+            [timer invalidate];
+            timer = nil;
+            [autoRefreshItem setState:0];
+        }
+    }];
 }
 
 - (IBAction)autoRefreshAccount:(id)sender {

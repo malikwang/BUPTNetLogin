@@ -16,7 +16,7 @@
 
 
 - (void)refresh:(void (^)(NSDictionary *))completionBlock{
-    __block NSString *resHtml = @"";
+    __block NSString *resHtml = nil;
     NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);  //很关键
     __block NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
 //    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -64,7 +64,7 @@
 }
 
 - (void)loginWithUser:(NSString *)userID andPwd:(NSString *)pwd andCompletionBlock:(void (^)(BOOL))completionBlock{
-    static NSString *resHtml = @"";
+    static NSString *resHtml = nil;
     NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);  //很关键
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
