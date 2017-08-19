@@ -171,18 +171,18 @@
     [self setNeedsDisplay:YES];
 }
 
+//右键登录
+- (void)rightMouseDown:(NSEvent *)event{
+    [loginManager loginWithUser:currentUser andPwd:currentPwd andCompletionBlock:^(BOOL flag){
+        
+    }];
+}
+
 - (void)mouseUp:(NSEvent *)event{
     isHighlight = NO;
     [self setNeedsDisplay:YES];
 }
 
-////右键显示菜单
-//- (void)rightMouseDown:(NSEvent *)event{
-//    NSMenu *menu = [super menu];
-//    [item popUpStatusItemMenu:menu];
-//    [self refreshMenu:menu];
-//    [self setNeedsDisplay:YES];
-//}
 
 - (void)willOpenMenu:(NSMenu *)menu withEvent:(NSEvent *)event{
     isHighlight = YES;

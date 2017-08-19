@@ -64,7 +64,7 @@
 }
 
 - (void)loginWithUser:(NSString *)userID andPwd:(NSString *)pwd andCompletionBlock:(void (^)(BOOL))completionBlock{
-    static NSString *resHtml = nil;
+    __block NSString *resHtml = nil;
     NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);  //很关键
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
@@ -72,7 +72,7 @@
         AFHTTPSessionManager *manager = [AFSessionSingleton sharedHttpSessionManager];
         NSDictionary *param = @{@"DDDDD":userID,@"upass":pwd,@"savePWD":@"0",@"0MKKey":@""};
         [manager POST:@"http://10.3.8.211" parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            resHtml = [NSString stringWithCString:[responseObject bytes] encoding:encoding];
+            resHtml = [[NSString alloc] initWithData:responseObject encoding:encoding];
             dispatch_group_leave(group);
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@",error);
