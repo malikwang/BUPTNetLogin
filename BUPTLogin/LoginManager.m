@@ -113,6 +113,9 @@
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = title;
     notification.informativeText = message;
+    notification.hasActionButton = YES;
+    notification.actionButtonTitle = @"确定";
+    notification.otherButtonTitle = @"取消";
     //递交通知
     [[NSUserNotificationCenter defaultUserNotificationCenter] scheduleNotification:notification];
 }
