@@ -19,4 +19,5 @@
 - (IBAction)userDidEndEdit:(NSTextField *)sender;
 - (IBAction)pwdDidEndEdit:(id)sender;
 @property (nonatomic, strong) NSString *plistPath;
+@property (nonatomic) NSInteger selectedRow;
 @end

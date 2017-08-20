@@ -14,7 +14,7 @@
 
 @implementation AccountManager
 
-@synthesize accountArray,accountTableView,deleteButton,userID,userPwd,plistPath;
+@synthesize accountArray,accountTableView,deleteButton,userID,userPwd,plistPath,selectedRow;
 
 - (void)windowDidLoad {
     [super windowDidLoad];
@@ -31,7 +31,7 @@
 //选中并更新账号与密码输入框
 - (void)tableViewSelectionDidChange:(NSNotification *)notification{
 //    NSLog(@"%lu",[accountTableView selectedRow]);
-    NSInteger selectedRow = [accountTableView selectedRow];
+    selectedRow = [accountTableView selectedRow];
     if (selectedRow >= 0 && accountArray.count > selectedRow) {
         deleteButton.enabled = YES;
         userID.stringValue = [accountArray[selectedRow] valueForKey:@"id"];
@@ -93,26 +93,24 @@
 }
 
 - (IBAction)deleteAccount:(id)sender {
-    NSInteger selectedRow = [accountTableView selectedRow];
-    [self deleteAccountInArray:selectedRow];
-    [accountTableView removeRowsAtIndexes:[NSIndexSet indexSetWithIndex:selectedRow] withAnimation:NSTableViewAnimationEffectGap];
+    NSInteger selectRow = [accountTableView selectedRow];
+    [self deleteAccountInArray:selectRow];
+    [accountTableView removeRowsAtIndexes:[NSIndexSet indexSetWithIndex:selectRow] withAnimation:NSTableViewAnimationEffectGap];
     //如果删除第一行，显示下一个
-    if (selectedRow == 0) {
-        selectedRow = 1;
+    if (selectRow == 0) {
+        selectRow = 1;
     }
-    [accountTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:selectedRow - 1] byExtendingSelection:NO];
-    [accountTableView scrollRowToVisible:selectedRow - 1];
+    [accountTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:selectRow - 1] byExtendingSelection:NO];
+    [accountTableView scrollRowToVisible:selectRow - 1];
 }
 
 //离开点击的输入框，会触发该事件
 - (IBAction)userDidEndEdit:(NSTextField *)sender {
-    NSInteger selectedRow = [accountTableView selectedRow];
     [self updateAccountArray:selectedRow];
     [accountTableView reloadData];
 }
 
 - (IBAction)pwdDidEndEdit:(id)sender {
-    NSInteger selectedRow = [accountTableView selectedRow];
     [self updateAccountArray:selectedRow];
 }
 
