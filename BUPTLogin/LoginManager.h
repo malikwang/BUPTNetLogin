@@ -11,6 +11,6 @@
 @interface LoginManager : NSObject
 
 - (void)refresh:(void (^)(NSDictionary *))completionBlock;
-- (void)loginWithUser:(NSString *)userID andPwd:(NSString *)pwd andCompletionBlock:(void (^)(BOOL))completionBlock;
+- (void)loginWithUser:(NSString *)userID andPwd:(NSString *)pwd whetherSendNotification:(BOOL)flag andCompletionBlock:(void (^)(BOOL))completionBlock;
 - (NSString *)whoAmI;
 @end

@@ -35,6 +35,12 @@
                         <action selector="login:" target="xzx-Hq-C5Y" id="Tnz-fa-BHa"/>
                     </connections>
                 </menuItem>
+                <menuItem title="自动登录" id="GtY-5R-ORX">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="autoLogin:" target="xzx-Hq-C5Y" id="Web-Us-VGy"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="K2L-bL-XIp"/>
                 <menuItem title="自动刷新" id="3R5-k0-hDk">
                     <modifierMask key="keyEquivalentModifierMask"/>

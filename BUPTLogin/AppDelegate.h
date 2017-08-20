@@ -19,9 +19,11 @@
 - (IBAction)autoRefreshAccount:(id)sender;
 - (IBAction)refreshAccount:(id)sender;
 - (IBAction)quit:(id)sender;
+- (IBAction)autoLogin:(id)sender;
 @property (strong, nonatomic) NSStatusItem *statusItem;
 @property (strong, nonatomic) StatusItemView *statusItemView;
 @property (strong, nonatomic) LoginManager *loginManager;
-@property (assign) NSTimer* timer;
+@property (assign) NSTimer* refreshTimer;
+@property (assign) NSTimer* loginTimer;
 @end
 

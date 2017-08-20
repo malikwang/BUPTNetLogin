@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <AFNetworkReachabilityManager.h>
 
 
 @interface AppDelegate ()
@@ -15,7 +16,7 @@
 
 @implementation AppDelegate
 
-@synthesize mainMenu,statusItem,statusItemView,loginManager,timer,autoRefreshItem;
+@synthesize mainMenu,statusItem,statusItemView,loginManager,autoRefreshItem,refreshTimer,loginTimer;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
@@ -39,7 +40,7 @@
 
 
 - (IBAction)login:(id)sender {
-    [loginManager loginWithUser:statusItemView.currentUser andPwd:statusItemView.currentPwd andCompletionBlock:^(BOOL flag){
+    [loginManager loginWithUser:statusItemView.currentUser andPwd:statusItemView.currentPwd whetherSendNotification:YES andCompletionBlock:^(BOOL flag){
         if (flag) {
             [self refresh];
         }
@@ -49,21 +50,32 @@
 - (void)refresh{
     [statusItemView refreshMenu:mainMenu whetherRefreshStatusBar:YES andCompletionBlock:^(BOOL flag){
         if (!flag) {
-            [timer invalidate];
-            timer = nil;
+            [refreshTimer invalidate];
+            refreshTimer = nil;
             [autoRefreshItem setState:0];
         }
     }];
 }
 
+//为自动登录服务，登录失败不提示
+- (void)loginWithoutErrorNotification{
+    [loginManager loginWithUser:statusItemView.currentUser andPwd:statusItemView.currentPwd whetherSendNotification:NO andCompletionBlock:^(BOOL flag){
+        if (flag) {
+            [self refresh];
+            [loginTimer invalidate];
+            loginTimer = nil;
+        }
+    }];
+}
+
 - (IBAction)autoRefreshAccount:(id)sender {
-    if (timer) {
-        [timer invalidate];
-        timer = nil;
+    if (refreshTimer) {
+        [refreshTimer invalidate];
+        refreshTimer = nil;
     }
     autoRefreshItem.state = 1;
-    timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector: @selector(refresh) userInfo: nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    refreshTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector: @selector(refresh) userInfo: nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:refreshTimer forMode:NSRunLoopCommonModes];
 }
 
 - (IBAction)refreshAccount:(id)sender {
@@ -72,6 +84,43 @@
 
 - (IBAction)quit:(id)sender {
     [NSApp terminate:self];
+}
+
+- (IBAction)autoLogin:(id)sender {
+    NSMenuItem *item = (NSMenuItem *)sender;
+    if (item.state == 1) {
+        [item setState:0];
+        [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+        [loginTimer invalidate];
+        loginTimer = nil;
+    } else {
+        [item setState:1];
+        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+        // 检测网络连接的单例,网络变化时的回调方法
+        [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            NSLog(@"%ld",(long)status);
+            switch (status) {
+                case AFNetworkReachabilityStatusUnknown:
+                    NSLog(@"网络错误");
+                    break;
+                    
+                case AFNetworkReachabilityStatusNotReachable:
+                    NSLog(@"没有连接网络");
+                    break;
+                    
+                case AFNetworkReachabilityStatusReachableViaWWAN:
+                    NSLog(@"手机自带网络");
+                    break;
+                    
+                case AFNetworkReachabilityStatusReachableViaWiFi:
+                    NSLog(@"有网连接");
+                    loginTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector: @selector(loginWithoutErrorNotification) userInfo: nil repeats:YES];
+                    [[NSRunLoop currentRunLoop] addTimer:loginTimer forMode:NSRunLoopCommonModes];
+                    break;
+                    
+            }
+        }];
+    }
 }
 
 @end

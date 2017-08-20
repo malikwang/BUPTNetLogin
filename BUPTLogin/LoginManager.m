@@ -63,7 +63,7 @@
     });
 }
 
-- (void)loginWithUser:(NSString *)userID andPwd:(NSString *)pwd andCompletionBlock:(void (^)(BOOL))completionBlock{
+- (void)loginWithUser:(NSString *)userID andPwd:(NSString *)pwd whetherSendNotification:(BOOL)flag andCompletionBlock:(void (^)(BOOL))completionBlock{
     __block NSString *resHtml = nil;
     NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);  //很关键
     dispatch_group_t group = dispatch_group_create();
@@ -76,7 +76,10 @@
             dispatch_group_leave(group);
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@",error);
-            [self sendNotification:@"网络断开" andMessage:@"请检查您的网络连接"];
+            //避免在使用自动登录时，一直弹出提示
+            if (flag) {
+               [self sendNotification:@"网络断开" andMessage:@"请检查您的网络连接"];
+            }
             dispatch_group_leave(group);
             completionBlock(false);
         }];
@@ -90,7 +93,9 @@
             //截取字符串
             NSString *msgCode = [substr substringFromIndex:4];
             NSString *errorStr = [self errorStrReturn:[msgCode intValue]];
-            [self sendNotification:@"登录失败" andMessage:errorStr];
+            if (flag) {
+               [self sendNotification:@"登录失败" andMessage:errorStr]; 
+            }
             completionBlock(false);
         } else if (resHtml != nil && [resHtml rangeOfString:@"登录成功窗"].location != NSNotFound){
             [self sendNotification:@"提示" andMessage:@"登录成功"];

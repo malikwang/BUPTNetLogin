@@ -173,7 +173,7 @@
 
 //右键登录
 - (void)rightMouseDown:(NSEvent *)event{
-    [loginManager loginWithUser:currentUser andPwd:currentPwd andCompletionBlock:^(BOOL flag){
+    [loginManager loginWithUser:currentUser andPwd:currentPwd whetherSendNotification:YES andCompletionBlock:^(BOOL flag){
         
     }];
 }
