@@ -54,13 +54,13 @@
 
 
 //更新主菜单栏，同时选择是否刷新菜单
-- (void)refreshMenu:(NSMenu *)mainMenu whetherRefreshStatusBar:(BOOL)refreshFlag andCompletionBlock:(void (^)(BOOL))completionBlock{
+- (void)refreshMenu:(NSMenu *)mainMenu whetherRefreshStatusBar:(BOOL)refreshFlag whetherSendNotification:(BOOL)sendFlag andCompletionBlock:(void (^)(BOOL))completionBlock{
     //先刷新账户一栏
     __block BOOL flag = false;
     [self refreshAccountMenu:mainMenu];
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
-    [loginManager refresh:^(NSDictionary *data){
+    [loginManager refreshAndWhetherSendNotification:sendFlag andCompletionBlock:^(NSDictionary *data){
         NSString *responseCode = [data valueForKey:@"responseCode"];
         //说明已登录
         if ([responseCode isEqualToString:@"0"]) {
@@ -165,7 +165,7 @@
     NSMenu *menu = [super menu];
     [item popUpStatusItemMenu:menu];
     //这里不刷新Bar，因为菜单里有刷新功能
-    [self refreshMenu:menu whetherRefreshStatusBar:NO andCompletionBlock:^(BOOL flag){
+    [self refreshMenu:menu whetherRefreshStatusBar:NO whetherSendNotification:YES andCompletionBlock:^(BOOL flag){
         
     }];
     [self setNeedsDisplay:YES];

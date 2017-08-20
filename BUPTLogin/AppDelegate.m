@@ -48,12 +48,8 @@
 }
 
 - (void)refresh{
-    [statusItemView refreshMenu:mainMenu whetherRefreshStatusBar:YES andCompletionBlock:^(BOOL flag){
-        if (!flag) {
-            [refreshTimer invalidate];
-            refreshTimer = nil;
-            [autoRefreshItem setState:0];
-        }
+    [statusItemView refreshMenu:mainMenu whetherRefreshStatusBar:YES whetherSendNotification:NO andCompletionBlock:^(BOOL flag){
+        
     }];
 }
 
@@ -69,13 +65,15 @@
 }
 
 - (IBAction)autoRefreshAccount:(id)sender {
-    if (refreshTimer) {
-        [refreshTimer invalidate];
-        refreshTimer = nil;
+    [refreshTimer invalidate];
+    refreshTimer = nil;
+    if (autoRefreshItem.state == 1) {
+        [autoRefreshItem setState:0];
+    } else {
+        [autoRefreshItem setState:1];
+        refreshTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector: @selector(refresh) userInfo: nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:refreshTimer forMode:NSRunLoopCommonModes];
     }
-    autoRefreshItem.state = 1;
-    refreshTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector: @selector(refresh) userInfo: nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:refreshTimer forMode:NSRunLoopCommonModes];
 }
 
 - (IBAction)refreshAccount:(id)sender {
@@ -87,12 +85,12 @@
 }
 
 - (IBAction)autoLogin:(id)sender {
+    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+    [loginTimer invalidate];
+    loginTimer = nil;
     NSMenuItem *item = (NSMenuItem *)sender;
     if (item.state == 1) {
         [item setState:0];
-        [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
-        [loginTimer invalidate];
-        loginTimer = nil;
     } else {
         [item setState:1];
         [[AFNetworkReachabilityManager sharedManager] startMonitoring];

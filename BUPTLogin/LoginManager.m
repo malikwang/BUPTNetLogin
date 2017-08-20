@@ -15,7 +15,7 @@
 //刷新页面，返回多种情况
 
 
-- (void)refresh:(void (^)(NSDictionary *))completionBlock{
+- (void)refreshAndWhetherSendNotification:(BOOL)flag andCompletionBlock:(void (^)(NSDictionary *))completionBlock{
     __block NSString *resHtml = nil;
     NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);  //很关键
     __block NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
@@ -31,14 +31,18 @@
         NSLog(@"Error: %@", error);
         //1代表无法连接
         [data setValue:@"1" forKey:@"responseCode"];
-        [self sendNotification:@"网络断开" andMessage:@"请检查您的网络连接"];
+        if (flag) {
+            [self sendNotification:@"网络断开" andMessage:@"请检查您的网络连接"];
+        }
         dispatch_group_leave(group);
     }];
     dispatch_group_notify(group,dispatch_get_main_queue(),^{
         // 子任务全部完成后，才执行
         if (resHtml != nil && [resHtml rangeOfString:@"请您输入用户名"].location != NSNotFound) {
             //当前未登录且不是网络原因
-            [self sendNotification:@"提示" andMessage:@"当前未登录，请登录账号"];
+            if (flag) {
+                [self sendNotification:@"提示" andMessage:@"当前未登录，请登录账号"];
+            }
             //2代表未登录账户
             [data setValue:@"2" forKey:@"responseCode"];
         } else if (resHtml != nil && [resHtml rangeOfString:@"请您输入用户名"].location == NSNotFound){
