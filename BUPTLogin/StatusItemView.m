@@ -108,7 +108,7 @@
             [mainMenu itemAtIndex:0].title = [NSString stringWithFormat:@"账户：%@",currentUser];
         }
     }
-    if (accountArray == nil) {
+    if (accountArray.count == 0) {
         NSMenuItem *tipItem = [[NSMenuItem alloc] init];
         tipItem.title = @"当前无账号";
         tipItem.enabled = NO;
@@ -153,9 +153,7 @@
 }
 
 - (void)showAccountWindow{
-    if (!accountManager) {
-        accountManager = [[AccountManager alloc] initWithWindowNibName: @"AccountManager"];
-    }
+    accountManager = [[AccountManager alloc] initWithWindowNibName: @"AccountManager"];
     [NSApp activateIgnoringOtherApps:YES];
     [[accountManager window] center];
     [accountManager showWindow: self];
