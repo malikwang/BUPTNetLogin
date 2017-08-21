@@ -34,7 +34,8 @@
     statusItemView = [[StatusItemView alloc] initWithStatusItem:statusItem];
     statusItem.view = statusItemView;
     statusItemView.menu = mainMenu;
-    [self refresh];
+    [statusItemView refreshStatusBar:NO];
+    [statusItemView refreshMenu:mainMenu whetherSendNotification:YES];
 }
 
 
@@ -42,15 +43,13 @@
 - (IBAction)login:(id)sender {
     [loginManager loginWithUser:statusItemView.currentUser andPwd:statusItemView.currentPwd whetherSendNotification:YES andCompletionBlock:^(BOOL flag){
         if (flag) {
-            [self refresh];
+            [statusItemView refreshStatusBar:NO];
         }
     }];
 }
 
 - (void)refresh{
-    [statusItemView refreshMenu:mainMenu whetherRefreshStatusBar:YES whetherSendNotification:NO andCompletionBlock:^(BOOL flag){
-        
-    }];
+    [statusItemView refreshStatusBar:NO];
 }
 
 //为自动登录服务，登录失败不提示
@@ -77,7 +76,7 @@
 }
 
 - (IBAction)refreshAccount:(id)sender {
-    [self refresh];
+    [statusItemView refreshStatusBar:YES];
 }
 
 - (IBAction)quit:(id)sender {

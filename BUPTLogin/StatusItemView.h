@@ -23,6 +23,6 @@
 @property (nonatomic, strong) AccountManager *accountManager;
 @property (nonatomic, strong) LoginManager *loginManager;
 - (id)initWithStatusItem:(NSStatusItem *)statusItem;
-- (void)refreshStatusBarWithFlow:(NSString *)flow andFee:(NSString *)fee;
-- (void)refreshMenu:(NSMenu *)mainMenu whetherRefreshStatusBar:(BOOL)refreshFlag whetherSendNotification:(BOOL)sendFlag andCompletionBlock:(void (^)(BOOL))completionBlock;
+- (void)refreshStatusBar:(BOOL)sendFlag;
+- (void)refreshMenu:(NSMenu *)mainMenu whetherSendNotification:(BOOL)sendFlag;
 @end

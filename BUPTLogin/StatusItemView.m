@@ -40,26 +40,37 @@
 }
 
 //更新状态栏
-- (void)refreshStatusBarWithFlow:(NSString *)flow andFee:(NSString *)fee{
-    //加上单位
-    flowUsage = flow;
-    feeRemain = fee;
-    NSSize s1 = [flowUsage sizeWithAttributes: [self stringAttributes]];
-    NSSize s2 = [feeRemain sizeWithAttributes: [self stringAttributes]];
-    CGFloat width = s1.width > s2.width ? s1.width : s2.width;
-    item.length = width;
-    [self setNeedsDisplay:YES];
+- (void)refreshStatusBar:(BOOL)sendFlag{
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
+    [loginManager refreshAndWhetherSendNotification:sendFlag andCompletionBlock:^(NSDictionary *data){
+        NSString *responseCode = [data valueForKey:@"responseCode"];
+        //说明已登录
+        if ([responseCode isEqualToString:@"0"]) {
+            flowUsage = [NSString stringWithFormat:@"%@MB",[data valueForKey:@"flowUsage"]];
+            feeRemain = [NSString stringWithFormat:@"%@元",[data valueForKey:@"feeRemain"]];
+            dispatch_group_leave(group);
+        } else {
+            flowUsage = @"NULL";
+            feeRemain = @"NULL";
+            dispatch_group_leave(group);
+        }
+    }];
+    dispatch_group_notify(group,dispatch_get_main_queue(),^{
+        NSSize s1 = [flowUsage sizeWithAttributes: [self stringAttributes]];
+        NSSize s2 = [feeRemain sizeWithAttributes: [self stringAttributes]];
+        CGFloat width = s1.width > s2.width ? s1.width : s2.width;
+        item.length = width;
+        [self setNeedsDisplay:YES];
+    });
 }
 
 
 
 //更新主菜单栏，同时选择是否刷新菜单
-- (void)refreshMenu:(NSMenu *)mainMenu whetherRefreshStatusBar:(BOOL)refreshFlag whetherSendNotification:(BOOL)sendFlag andCompletionBlock:(void (^)(BOOL))completionBlock{
+- (void)refreshMenu:(NSMenu *)mainMenu whetherSendNotification:(BOOL)sendFlag{
     //先刷新账户一栏
-    __block BOOL flag = false;
     [self refreshAccountMenu:mainMenu];
-    dispatch_group_t group = dispatch_group_create();
-    dispatch_group_enter(group);
     [loginManager refreshAndWhetherSendNotification:sendFlag andCompletionBlock:^(NSDictionary *data){
         NSString *responseCode = [data valueForKey:@"responseCode"];
         //说明已登录
@@ -67,32 +78,16 @@
             [mainMenu itemAtIndex:2].title = @"已登录";
             //登录设置为不可点
             [mainMenu itemAtIndex:3].enabled = NO;
-            flowUsage = [NSString stringWithFormat:@"%@MB",[data valueForKey:@"flowUsage"]];
-            feeRemain = [NSString stringWithFormat:@"%@元",[data valueForKey:@"feeRemain"]];
-            if (refreshFlag) {
-                [self refreshStatusBarWithFlow:flowUsage andFee:feeRemain];
-            }
-            flag = true;
-            dispatch_group_leave(group);
         } else if ([responseCode isEqualToString:@"1"]){
             [mainMenu itemAtIndex:2].title = @"请检查您的网络连接";
             //登录设置为不可点
             [mainMenu itemAtIndex:3].enabled = YES;
-            [self refreshStatusBarWithFlow:@"null" andFee:@"null"];
-            flag = false;
-            dispatch_group_leave(group);
         } else if ([responseCode isEqualToString:@"2"]){
             [mainMenu itemAtIndex:2].title = @"未登录";
             //登录设置为可点
             [mainMenu itemAtIndex:3].enabled = YES;
-            [self refreshStatusBarWithFlow:@"null" andFee:@"null"];
-            flag = false;
-            dispatch_group_leave(group);
         }
     }];
-    dispatch_group_notify(group,dispatch_get_main_queue(),^{
-        completionBlock(flag);
-    });
 }
 
 - (void)refreshAccountMenu:(NSMenu *)mainMenu{
@@ -163,9 +158,7 @@
     NSMenu *menu = [super menu];
     [item popUpStatusItemMenu:menu];
     //这里不刷新Bar，因为菜单里有刷新功能
-    [self refreshMenu:menu whetherRefreshStatusBar:NO whetherSendNotification:YES andCompletionBlock:^(BOOL flag){
-        
-    }];
+    [self refreshMenu:menu whetherSendNotification:NO];
     [self setNeedsDisplay:YES];
 }
 
