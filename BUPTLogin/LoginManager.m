@@ -58,10 +58,11 @@
             NSString *fee = [substr substringFromIndex:5];
             //将字节转换为MB
             float flowMB = [flow floatValue] / 1024;
+            float feeY = [fee floatValue] / 10000;
             //0代表已登录状态
             [data setValue:@"0" forKey:@"responseCode"];
             [data setValue:[NSString stringWithFormat:@"%.1f",flowMB] forKey:@"flowUsage"];
-            [data setValue:fee forKey:@"feeRemain"];
+            [data setValue:[NSString stringWithFormat:@"%.2f",feeY] forKey:@"feeRemain"];
         }
         completionBlock(data);
     });
