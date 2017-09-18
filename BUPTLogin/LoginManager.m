@@ -92,11 +92,11 @@
     dispatch_group_notify(group, dispatch_get_global_queue(0, 0), ^{
         //说明未能成功登录且不是网络原因
         if (resHtml != nil && [resHtml rangeOfString:@"登录成功窗"].location == NSNotFound) {
-            NSString *pattern = @"Msg=\\d";
+            NSString *pattern = @"Msg=\\d\\d";
             NSRange range = [resHtml rangeOfString:pattern options:NSRegularExpressionSearch];
             NSString *substr = [resHtml substringWithRange:range];
             //截取字符串
-            NSString *msgCode = [substr substringFromIndex:4];
+            NSString *msgCode = [substr substringFromIndex:5];
             NSString *errorStr = [self errorStrReturn:[msgCode intValue]];
             if (flag) {
                [self sendNotification:@"登录失败" andMessage:errorStr]; 
