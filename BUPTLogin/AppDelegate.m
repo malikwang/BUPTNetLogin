@@ -85,11 +85,12 @@
 
 - (IBAction)autoLogin:(id)sender {
     [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
-    [loginTimer invalidate];
-    loginTimer = nil;
     NSMenuItem *item = (NSMenuItem *)sender;
     if (item.state == 1) {
         [item setState:0];
+        [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+        [loginTimer invalidate];
+        loginTimer = nil;
     } else {
         [item setState:1];
         [[AFNetworkReachabilityManager sharedManager] startMonitoring];
@@ -111,6 +112,8 @@
                     
                 case AFNetworkReachabilityStatusReachableViaWiFi:
                     NSLog(@"有网连接");
+                    [loginTimer invalidate];
+                    loginTimer = nil;
                     loginTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector: @selector(loginWithoutErrorNotification) userInfo: nil repeats:YES];
                     [[NSRunLoop currentRunLoop] addTimer:loginTimer forMode:NSRunLoopCommonModes];
                     break;
