@@ -156,9 +156,10 @@
 
 - (void)mouseDown:(NSEvent *)event{
     NSMenu *menu = [super menu];
-    [item popUpStatusItemMenu:menu];
     //这里不刷新Bar，因为菜单里有刷新功能
     [self refreshMenu:menu whetherSendNotification:NO];
+    //先刷新菜单，再显示
+    [item popUpStatusItemMenu:menu];
     [self setNeedsDisplay:YES];
 }
 
