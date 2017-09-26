@@ -15,6 +15,7 @@
 
 @property (weak) IBOutlet NSMenu *mainMenu;
 @property (weak) IBOutlet NSMenuItem *autoRefreshItem;
+- (IBAction)loginOut:(id)sender;
 - (IBAction)login:(id)sender;
 - (IBAction)autoRefreshAccount:(id)sender;
 - (IBAction)refreshAccount:(id)sender;

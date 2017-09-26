@@ -40,6 +40,10 @@
 
 
 
+- (IBAction)loginOut:(id)sender {
+    [loginManager loginOut];
+}
+
 - (IBAction)login:(id)sender {
     [loginManager loginWithUser:statusItemView.currentUser andPwd:statusItemView.currentPwd whetherSendNotification:YES andCompletionBlock:^(BOOL flag){
         if (flag) {

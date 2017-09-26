@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -28,6 +28,12 @@
                 <menuItem isSeparatorItem="YES" id="FSF-AM-vr6"/>
                 <menuItem title="当前未登录" enabled="NO" id="zyf-1u-IRS">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="注销" keyEquivalent="q" id="UfB-fU-KEo">
+                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                    <connections>
+                        <action selector="loginOut:" target="xzx-Hq-C5Y" id="Cg4-Fi-ADV"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="登录" keyEquivalent="l" id="QvG-yt-oLG">
                     <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>

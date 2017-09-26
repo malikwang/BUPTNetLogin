@@ -68,6 +68,15 @@
     });
 }
 
+- (void)loginOut{
+    AFHTTPSessionManager *manager = [AFSessionSingleton sharedHttpSessionManager];
+    [manager GET:@"http://10.3.8.211/F.htm" parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        [self sendNotification:@"提示" andMessage:@"注销成功"];
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
 - (void)loginWithUser:(NSString *)userID andPwd:(NSString *)pwd whetherSendNotification:(BOOL)flag andCompletionBlock:(void (^)(BOOL))completionBlock{
     __block NSString *resHtml = nil;
     NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);  //很关键

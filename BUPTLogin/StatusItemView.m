@@ -77,15 +77,18 @@
         if ([responseCode isEqualToString:@"0"]) {
             [mainMenu itemAtIndex:2].title = @"已登录";
             //登录设置为不可点
-            [mainMenu itemAtIndex:3].enabled = NO;
+            [mainMenu itemAtIndex:4].enabled = NO;
+            [mainMenu itemAtIndex:3].enabled = YES;
         } else if ([responseCode isEqualToString:@"1"]){
             [mainMenu itemAtIndex:2].title = @"请检查您的网络连接";
             //登录设置为不可点
-            [mainMenu itemAtIndex:3].enabled = YES;
+            [mainMenu itemAtIndex:4].enabled = YES;
+            [mainMenu itemAtIndex:3].enabled = NO;
         } else if ([responseCode isEqualToString:@"2"]){
             [mainMenu itemAtIndex:2].title = @"未登录";
             //登录设置为可点
-            [mainMenu itemAtIndex:3].enabled = YES;
+            [mainMenu itemAtIndex:4].enabled = YES;
+            [mainMenu itemAtIndex:3].enabled = NO;
         }
     }];
 }
