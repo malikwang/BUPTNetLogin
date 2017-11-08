@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <AFNetworkReachabilityManager.h>
+#import <CoreWLAN/CoreWLAN.h>
 
 
 @interface AppDelegate ()
@@ -118,6 +119,10 @@
                     NSLog(@"有网连接");
                     [loginTimer invalidate];
                     loginTimer = nil;
+                    CWInterface* wifi = [[CWWiFiClient sharedWiFiClient] interface];
+                    if ([wifi.ssid isEqualToString:@"BUPT-mobile"] || [wifi.ssid isEqualToString:@"bykyl626"]) {
+                        break;
+                    }
                     loginTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector: @selector(loginWithoutErrorNotification) userInfo: nil repeats:YES];
                     [[NSRunLoop currentRunLoop] addTimer:loginTimer forMode:NSRunLoopCommonModes];
                     break;
